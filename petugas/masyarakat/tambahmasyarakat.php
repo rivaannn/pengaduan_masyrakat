@@ -1,0 +1,97 @@
+<?php
+
+// cek tombol submit sudah ditekan atau belum
+if( isset($_POST["submit"] ) ) {
+	$password = $_POST["password"];
+	$password2 = $_POST["password2"];
+	if( $password != $password2 ) {
+		echo "<script>
+		alert('Password Dan Konfirmasi Password Tidak Sama')
+		document.location.href = '?page=masyarakat&fitur=pesan'
+		</script>
+		";
+	} else {
+
+	// cek apakah data berhasil ditambahkan atau tidak
+		if( tambahmasyarakat($_POST) > 0) {
+			echo "<script>
+			alert('Data berhasil Ditambahkan')
+			document.location.href = '?page=masyarakat&fitur=list'
+			</script>
+			";	
+		} else {
+			echo "<script>
+			alert('Data Gagal Ditambahkan')
+			document.location.href = '?page=masyarakat&fitur=pesan'
+			</script>
+			";
+		}
+	}
+}
+?>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Tambah Data Masyarakat</title>
+
+	<link rel="stylesheet" type="text/css" href="asset/bootstrap/css/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="asset/font-awesome/css/font-awesome.min.css" />
+	<link rel="stylesheet" type="text/css" href="asset/css/local.css" />
+
+	<script type="text/javascript" src="asset/js/jquery-1.10.2.min.js"></script>
+	<script type="text/javascript" src="asset/bootstrap/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+	<h1>Tambah Data Masyarakat</h1>
+
+	<div id="page-wrapper">
+
+		<div class="row">
+			<div class="col-lg-6">
+
+				<form role="form" action="" method="post">
+
+					<fieldset>
+
+						<div class="form-group has-success">
+							<label class="control-label" for=" NIK"> NIK :</label>
+							<input type="text" class="form-control" name="nik" id=" NIK" required></input>
+						</div>
+						<div class="form-group has-success">
+							<label class="control-label" for="Nama">Nama :</label>
+							<input type="text" class="form-control" name="nama" id="Nama" required></input>
+						</div>
+						<div class="form-group has-success">
+							<label class="control-label" for="Username">Username :</label>
+							<input type="text" class="form-control" name="username" id="Username" required></input>
+						</div>
+						<div class="form-group has-success">
+							<label class="control-label" for="Password">Password :</label>
+							<input type="password" class="form-control" name="password" id="Password" required></input>
+						</div>
+						<div class="form-group has-success">
+							<label class="control-label" for="Konfirmasi Password">Konfirmasi Password :</label>
+							<input type="password" class="form-control" name="password2" id="Konfirmasi Password" required></input>
+						</div>
+						<div class="form-group has-success">
+							<label class="control-label" for="Telefon">Telefon :</label>
+							<input type="text" class="form-control" name="telp" id="Telefon" required></input>
+						</div>
+						<div class="form-group has-success">
+							<label class="control-label" for="Alamat">Alamat :</label>
+							<input type="text" class="form-control" name="alamat" id="Alamat" required></input>
+						</div>
+						<div class="form-group has-success">
+							<input type="submit" class="btn btn-primary" value="Tambah Data!" name="submit"/>
+						</div>
+
+					</fieldset>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
